@@ -14,8 +14,7 @@ func main() {
 	}
 
 	degree := int(x)
-
-	fmt.Printf("provided x degree value: %d\n", degree)
+	fmt.Printf("provided degree value: %d\n", degree)
 
 	data, err := reading.FileToMap("./data.csv")
 	if err != nil {

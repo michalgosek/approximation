@@ -152,9 +152,7 @@ func CreateCofactorMatrix(matrix [][]float64) [][]float64 {
 }
 
 func CreateInverseMatrix(matrix [][]float64, det float64) [][]float64 {
-	// macierz dołączona :)
 	adjugateMatrix := TransposeMatrix(matrix)
-
 	inverseMatrix := make([][]float64, len(matrix))
 
 	for i := 0; i < len(inverseMatrix); i++ {
@@ -198,18 +196,13 @@ func FindPolynomialValues(inverseMatrix, tMatrix [][]float64) []float64 {
 func FindApproximationFunc(x, y []float64, m int) {
 	sMatirx := CreateMatrixS(x, m)
 	tMatrix := CreateTMatrix(x, y, m)
-
 	cofactorMatrixS := CreateCofactorMatrix(sMatirx)
 	transposedMatrixS := TransposeMatrix(cofactorMatrixS)
-
 	detS := CalculateMatrixDet(sMatirx)
-
 	inverseMatrix := CreateInverseMatrix(transposedMatrixS, detS)
-
 	values := FindPolynomialValues(inverseMatrix, tMatrix)
 
 	var sb strings.Builder
-
 	for i := 0; i < len(values); i++ {
 		var s string
 		if i == 0 {
