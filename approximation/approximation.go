@@ -11,7 +11,6 @@ func CreateMatrixS(x []float64, m int) [][]float64 {
 	s := 2 * m
 
 	var sk []float64
-
 	for k := 0; k <= s; k++ {
 		var rec float64
 		for i := 0; i < len(x); i++ {
@@ -21,7 +20,6 @@ func CreateMatrixS(x []float64, m int) [][]float64 {
 	}
 
 	sMatrix := make([][]float64, m+1)
-
 	for i := 0; i <= m; i++ {
 		var row []float64
 		for j := 0; j <= m; j++ {
@@ -55,7 +53,6 @@ func CreateMinor(s [][]float64, r, c int) [][]float64 {
 	minor := make([][]float64, len(s)-1)
 
 	var idx int
-
 	for i := 0; i < len(s); i++ {
 		if i == r {
 			continue
@@ -187,7 +184,6 @@ func FindPolynomialValues(inverseMatrix, tMatrix [][]float64) []float64 {
 
 		}
 		values = append(values, p)
-
 	}
 
 	return values
