@@ -2,7 +2,6 @@ package approximation_test
 
 import (
 	"lab3/approximation"
-
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
@@ -405,10 +404,9 @@ func Test_FindPolynomialValues(t *testing.T) {
 			}
 		})
 	}
-
 }
 
-func Example_FindApproximationFunc() {
+func Example_findApproximation() {
 	x := []float64{-1.8, -1, 0.2, 1.2, 2}
 	y := []float64{5.68, 1.99, 1.24, 9.81, 14.5}
 
