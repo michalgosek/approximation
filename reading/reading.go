@@ -46,17 +46,14 @@ func FileToMap(path string) (map[int][]float64, error) {
 
 	m := make(map[int][]float64, len(records))
 	for i, numbers := range records {
-
 		var values []float64
 		for _, n := range numbers {
 			v, err := strconv.ParseFloat(n, 32)
 			if err != nil {
 				return nil, errors.WithMessage(err, "parsing to float64 failed")
 			}
-
 			values = append(values, v)
 		}
-
 		m[i+1] = values
 	}
 

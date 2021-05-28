@@ -27,7 +27,6 @@ func CreateMatrixS(x []float64, m int) [][]float64 {
 		}
 		sMatrix[i] = row
 	}
-
 	return sMatrix
 }
 
@@ -45,7 +44,6 @@ func CreateTMatrix(x, y []float64, m int) [][]float64 {
 	for k := 0; k < len(tk); k++ {
 		tMatrix[k] = []float64{tk[k]}
 	}
-
 	return tMatrix
 }
 
@@ -67,7 +65,6 @@ func CreateMinor(s [][]float64, r, c int) [][]float64 {
 		minor[idx] = row
 		idx++
 	}
-
 	return minor
 }
 
@@ -89,18 +86,15 @@ func CalculateMatrixDet(matrix [][]float64) float64 {
 
 func CalculateCofactor(matrix [][]float64, i, j int) float64 {
 	min := CreateMinor(matrix, i, j)
-
 	if len(min) > 1 {
 		det := CalculateMatrixDet(min)
 		return math.Pow(-1, float64(i+j)) * det
 	}
-
 	return math.Pow(-1, float64(i+j)) * min[0][0]
 }
 
 func TransposeMatrix(matrix [][]float64) [][]float64 {
 	t := make([][]float64, len(matrix))
-
 	for i := 0; i < len(matrix); i++ {
 		t[i] = make([]float64, len(matrix))
 	}
@@ -110,7 +104,6 @@ func TransposeMatrix(matrix [][]float64) [][]float64 {
 		var row []float64
 
 		r := 0
-
 		for j := 0; j < len(matrix); j++ {
 			row = append(row, matrix[i][j])
 		}
@@ -120,15 +113,12 @@ func TransposeMatrix(matrix [][]float64) [][]float64 {
 			r++
 		}
 		c++
-
 	}
-
 	return t
 }
 
 func CreateCofactorMatrix(matrix [][]float64) [][]float64 {
 	cofactor := make([][]float64, len(matrix))
-
 	for i := 0; i < len(cofactor); i++ {
 		cofactor[i] = make([]float64, len(matrix))
 	}
@@ -144,7 +134,6 @@ func CreateCofactorMatrix(matrix [][]float64) [][]float64 {
 		cofactor[i] = cofactors
 		r++
 	}
-
 	return cofactor
 }
 
@@ -179,7 +168,6 @@ func FindPolynomialValues(inverseMatrix, tMatrix [][]float64) []float64 {
 			if err != nil {
 				panic(err)
 			}
-
 			p += parsed
 
 		}
@@ -192,8 +180,10 @@ func FindPolynomialValues(inverseMatrix, tMatrix [][]float64) []float64 {
 func FindApproximationFunc(x, y []float64, m int) {
 	sMatirx := CreateMatrixS(x, m)
 	tMatrix := CreateTMatrix(x, y, m)
+
 	cofactorMatrixS := CreateCofactorMatrix(sMatirx)
 	transposedMatrixS := TransposeMatrix(cofactorMatrixS)
+
 	detS := CalculateMatrixDet(sMatirx)
 	inverseMatrix := CreateInverseMatrix(transposedMatrixS, detS)
 	values := FindPolynomialValues(inverseMatrix, tMatrix)
@@ -201,6 +191,7 @@ func FindApproximationFunc(x, y []float64, m int) {
 	var sb strings.Builder
 	for i := 0; i < len(values); i++ {
 		var s string
+
 		if i == 0 {
 			s = fmt.Sprintf("%f", values[i])
 		} else {
@@ -219,6 +210,5 @@ func FindApproximationFunc(x, y []float64, m int) {
 			panic(err)
 		}
 	}
-
 	fmt.Println("F(x) =", sb.String())
 }
